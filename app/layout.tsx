@@ -1,5 +1,6 @@
 import Header from '@/components/Header'
 import Main from '@/components/Main'
+import Navbar from '@/components/Navbar'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -20,8 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
+        <Main>
         {children}
-        <Main />
+       </Main>
+      
       </body>
     </html>
   )
