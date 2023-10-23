@@ -11,6 +11,9 @@ export default function Navbar() {
         <li>
             <Link href="/documents">View all documents</Link>
         </li>
+        <li>
+            <Link href="/add-document">Create new document</Link>
+        </li>
     </ul>
   );
 }

@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import { Document } from "@/interfaces"
 import DocComponent from '@/components/DocComponent';
 
-
-
 export default function Documents() {
 
 const [documents, setDocuments] = useState([])
@@ -23,7 +21,6 @@ useEffect(() => {
 
   return (
       <div>
-        
        
         {documents.map((document: Document) =>  (
           <Link key={document.id} href={`/documents/${document.id}`}>

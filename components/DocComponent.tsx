@@ -7,11 +7,12 @@ interface Props {
 
 function DocComponent(props: Props) {
   return (
-    <div className="bg-rose-50 rounded-lg m-2 p-4">
-        <h3 className="text-xl text-rose-600">
+    <div className="bg-gray-50 rounded-lg m-2 p-4">
+        <h3 className="text-xl text-rose-900">
             {props.document.title}
         </h3>
         <p>{props.document.content}</p>
+        
     </div>
   )
 }
