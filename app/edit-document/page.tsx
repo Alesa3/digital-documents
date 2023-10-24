@@ -53,16 +53,16 @@ export default function EditDocument() {
             value={title}
             onChange={(e) => setTitle(e.target.value)} className="w-full h-12 px-7 py-2 mb-4 text-s border border-gray-300 rounded-md" />
           
-          <input
+          <textarea
             type="text"
             placeholder={document.content}
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="w-full h-80 px-20 py-20 text-s border border-gray-300 rounded-md" />
+            className="w-full h-80 px-40 py-20 text-s border border-gray-300 rounded-md" />
           <button type="submit">Save</button>
         </form>
       ) : (
-        <div>Laddar...</div>
+        <div>Loading...</div>
       )}
     </div>
   );
