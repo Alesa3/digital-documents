@@ -12,14 +12,15 @@ function DocComponent(props: Props) {
   });
   return (
     
-    <div className="bg-gray-50 rounded-xl m-2 p-4">
+    <div className="bg-gray-50 rounded-xl m-8 p-10">
         <h3 className="text-xl text-rose-900">
             {props.document.title}
         </h3>
+        
         <p>{props.document.content}</p>
       <p className="text-sm text-gray-500">{formattedDate}</p>
-        
-    </div>
+      </div>
+  
   )
 }
 

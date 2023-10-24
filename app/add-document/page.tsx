@@ -30,14 +30,14 @@ export default function AddDocument() {
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full h-12 px-7 py-2 mb-4 text-xl border border-gray-300 rounded-md"
+          className="w-full h-10 px-7 py-2 mb-4 text-s border border-gray-300 rounded-md"
         />
         <input
           type="text"
           placeholder="Content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          className="w-full h-32 px-7 py-2 text-s border border-gray-300 rounded-md"
+          className="w-full h-80 px-20 py-2 text-s border border-gray-300 rounded-md"
         />
         <button type="submit">Save</button>
       </form>

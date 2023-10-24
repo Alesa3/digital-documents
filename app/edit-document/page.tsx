@@ -51,14 +51,14 @@ export default function EditDocument() {
             type="text"
             placeholder={document.title}
             value={title}
-            onChange={(e) => setTitle(e.target.value)} className="w-full h-12 px-7 py-2 mb-4 text-xl border border-gray-300 rounded-md" />
+            onChange={(e) => setTitle(e.target.value)} className="w-full h-12 px-7 py-2 mb-4 text-s border border-gray-300 rounded-md" />
           
           <input
             type="text"
             placeholder={document.content}
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="w-full h-32 px-7 py-2 text-s border border-gray-300 rounded-md" />
+            className="w-full h-80 px-20 py-20 text-s border border-gray-300 rounded-md" />
           <button type="submit">Save</button>
         </form>
       ) : (

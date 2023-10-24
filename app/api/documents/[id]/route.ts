@@ -23,3 +23,13 @@ export async function PATCH(req: Request, {params}: {params: {id: string}}) {
     })
     return NextResponse.json(result);
 }
+
+export async function DELETE(req: Request, {params}: {params: {id: string}}) {
+    const {id} = params;
+    console.log("id", id)
+
+    const result = await dbQuery({
+        sql: "DELETE FROM digitaldocs where id = " + parseInt(id)
+    });
+    return NextResponse.json(result)
+} 
