@@ -3,11 +3,12 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Document } from "@/interfaces";
+import CancelButton from "@/components/CancelButton";
 
 export default function EditDocument() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [author, setAuthor] = useState("")
+  const [author, setAuthor] = useState("");
   const [document, setDocument] = useState<Document | undefined>(undefined);
 
   const router = useRouter();
@@ -41,6 +42,10 @@ export default function EditDocument() {
     }
   };
 
+  const handleCancel = () => {
+    router.back();
+  };
+
   return (
     <div>
       <h1>Edit this document</h1>
@@ -68,6 +73,8 @@ export default function EditDocument() {
             className="w-full h-80 px-40 py-20 text-s border border-gray-300 rounded-md"
           />
           <button type="submit">Save</button>
+          <CancelButton onCancel={handleCancel} />
+
         </form>
       ) : (
         <div>Loading...</div>
