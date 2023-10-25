@@ -15,11 +15,11 @@ export async function GET(req: Request, {params}: {params: {id: string}}) {
 export async function PATCH(req: Request, {params}: {params: {id: string}}) {
     const {id} = params;
     const body = await req.json();
-    const {title, content} = body;
+    const {title, content, author} = body;
 
     const result = await dbQuery({
-        sql: "UPDATE digitaldocs SET title=?, content=? WHERE id="+ parseInt(id),
-        values: [title, content]
+        sql: "UPDATE digitaldocs SET title=?, content=?, author=? WHERE id="+ parseInt(id),
+        values: [title, content, author]
     })
     return NextResponse.json(result);
 }

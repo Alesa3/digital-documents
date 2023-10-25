@@ -3,5 +3,6 @@ export interface Document {
     title: string,
     content: string,
     createdAt: string,
+    author: string
     // deleted: boolean
 }

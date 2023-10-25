@@ -12,11 +12,11 @@ export async function GET(req: Request, res: Response) {
 
 export async function POST(req: Request, res: Response) {
     const body = await req.json();
-    const {title, content} = body;
+    const {title, content, author} = body;
 
     const result = await dbQuery({
-        sql: "INSERT INTO digitaldocs (title, content) VALUES(?, ?)",
-        values: [title, content]
+        sql: "INSERT INTO digitaldocs (title, content, author) VALUES(?, ?, ?)",
+        values: [title, content, author]
     })
     return NextResponse.json(result)
 }

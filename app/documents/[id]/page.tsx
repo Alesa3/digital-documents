@@ -12,6 +12,7 @@ export default function DisplayDocument({ params }: { params: { id: number } }) 
   const router = useRouter();
   const [document, setDocument] = useState<Document | undefined>(undefined);
 
+
   useEffect(() => {
     const getDocument = async () => {
       const res = await fetch("/api/documents/" + params.id);
@@ -40,20 +41,33 @@ export default function DisplayDocument({ params }: { params: { id: number } }) 
     <div className="bg-gray-50 rounded-xl m-8 p-10" style={{ maxWidth: '50%' }}>
       {document ? (
         <>
-          <h3 className="text-xl text-rose-900 mb-10">{document.title}</h3>
+          <h3 className="text-xl text-rose-900 mb-10 font-bold">{document.title}</h3>
           <p style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>{document.content}</p>
-          <button onClick={(e) => handleEdit(document)} style={{ marginRight: '10px' }}>
-            <FontAwesomeIcon icon={faEdit} />
-          </button>
-          <button onClick={(e) => handleDelete(params.id)}>
-            <FontAwesomeIcon icon={faTrash} />
-          </button>
+  
+          <div className="text-right mt-10">
+            <p className="text-sm text-gray-500">
+              Created at: {new Date(document.createdAt).toLocaleString('en-US', {
+                dateStyle: 'short',
+                timeStyle: 'short',
+              })}
+            </p>
+            <p className="text-sm text-gray-500">
+              Author: {document.author}
+            </p>
+            <div className="flex justify-end mt-10">
+              <button onClick={(e) => handleEdit(document)} style={{ marginRight: '10px' }}>
+                <FontAwesomeIcon icon={faEdit} />
+              </button>
+              <button onClick={(e) => handleDelete(params.id)}>
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
+            </div>
+          </div>
         </>
       ) : (
         <div>Loading...</div>
       )}
     </div>
   );
-  
-  
-}
+
+      }

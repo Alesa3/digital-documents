@@ -7,9 +7,8 @@ import { Document } from "@/interfaces";
 export default function EditDocument() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [author, setAuthor] = useState("")
   const [document, setDocument] = useState<Document | undefined>(undefined);
-  
-
 
   const router = useRouter();
 
@@ -34,7 +33,7 @@ export default function EditDocument() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title, content }),
+      body: JSON.stringify({ title, content, author }),
     });
 
     if (res.ok) {
@@ -54,7 +53,13 @@ export default function EditDocument() {
             onChange={(e) => setTitle(e.target.value)}
             className="w-full h-12 px-7 py-2 mb-4 text-s border border-gray-300 rounded-md"
           />
-
+          <input
+            type="text"
+            placeholder={document.author}
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+            className="w-full h-10 px-7 py-2 mb-4 text-s border border-gray-300 rounded-md"
+          />
           <textarea
             type="text"
             placeholder={document.content}
