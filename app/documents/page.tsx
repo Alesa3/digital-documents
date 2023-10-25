@@ -6,29 +6,29 @@ import DocComponent from '@/components/DocComponent';
 
 export default function Documents() {
 
-const [documents, setDocuments] = useState([])
+  const [documents, setDocuments] = useState([])
 
-useEffect(() => {
-  const getDocuments = async () => {
-    const res = await fetch("/api/documents")
-    const documents = await res.json();
-    console.log("Documents", documents);
-    setDocuments(documents);
-  }
-  getDocuments();
-}, [])
+  useEffect(() => {
+    const getDocuments = async () => {
+      const res = await fetch("/api/documents")
+      const documents = await res.json();
+      console.log("Documents", documents);
+      setDocuments(documents);
+    }
+    getDocuments();
+  }, [])
 
 
   return (
-      <div>
-       
-        {documents.map((document: Document) =>  (
-          <Link key={document.id} href={`/documents/${document.id}`}>
-            <DocComponent document={document}/>
-        
-          </Link>
-        ))}
-        
-        </div>
+    <div>
+      {documents.map((document: Document) => (
+        <Link key={document.id} href={`/documents/${document.id}`}>
+        <DocComponent document={document} />
+
+        </Link>
+
+      ))}
+
+    </div>
   )
 }

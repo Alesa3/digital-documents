@@ -21,7 +21,10 @@ function DocComponent(props: Props) {
         
         <p>{shortContent}...</p>
       <p className="text-sm text-gray-500">{formattedDate}</p>
+
     </div>
+
+    
   )
 }
 

@@ -7,7 +7,9 @@ import { Document } from "@/interfaces";
 export default function EditDocument() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [document, setDocument] = useState<Content | undefined>(undefined);
+  const [document, setDocument] = useState<Document | undefined>(undefined);
+  
+
 
   const router = useRouter();
 
@@ -17,48 +19,49 @@ export default function EditDocument() {
 
   useEffect(() => {
     const getDocument = async () => {
-      const res = await fetch("api/documents/"+ documentId);
+      const res = await fetch("api/documents/" + documentId);
       const data = await res.json();
       setDocument(data[0]);
     };
     if (documentId) getDocument();
-
   }, [documentId]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const res = await fetch("/api/documents/"+ documentId, {
-      method: "PATCH", 
+    const res = await fetch("/api/documents/" + documentId, {
+      method: "PATCH",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({title, content})
-    })
+      body: JSON.stringify({ title, content }),
+    });
 
     if (res.ok) {
-      router.push("/")
+      router.push("/documents");
     }
-  }
-
+  };
 
   return (
     <div>
       <h1>Edit this document</h1>
       {document ? (
-          <form onSubmit={handleSubmit} className="flex flex-col">
+        <form onSubmit={handleSubmit} className="flex flex-col">
           <input
             type="text"
             placeholder={document.title}
             value={title}
-            onChange={(e) => setTitle(e.target.value)} className="w-full h-12 px-7 py-2 mb-4 text-s border border-gray-300 rounded-md" />
-          
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full h-12 px-7 py-2 mb-4 text-s border border-gray-300 rounded-md"
+          />
+
           <textarea
             type="text"
             placeholder={document.content}
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="w-full h-80 px-40 py-20 text-s border border-gray-300 rounded-md" />
+            className="w-full h-80 px-40 py-20 text-s border border-gray-300 rounded-md"
+          />
           <button type="submit">Save</button>
         </form>
       ) : (
@@ -67,5 +70,3 @@ export default function EditDocument() {
     </div>
   );
 }
-
-

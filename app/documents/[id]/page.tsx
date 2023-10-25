@@ -1,45 +1,59 @@
 "use client";
-import React from 'react'
-import {useRouter} from "next/navigation"
+import React, { useEffect } from 'react'
+import { useRouter, useSearchParams } from "next/navigation"
 import { useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-    
-export default function DisplayDocument( {params} : { params: { id: number }}) {
+import { Document } from '@/interfaces';
+
+export default function DisplayDocument({ params }: { params: { id: number } }) {
   const router = useRouter();
-  const [content, setContent] = useState([]);
+  const [document, setDocument] = useState<Document | undefined>(undefined);
+
+  useEffect(() => {
+    const getDocument = async () => {
+      const res = await fetch("/api/documents/" + params.id);
+      const data = await res.json();
+      setDocument(data[0]);
+    };
+
+    getDocument();
+  }, [params.id]);
+
+  const handleEdit = (document: Document) => {
+    router.push("/edit-document/?id=" + params.id);
+  };
+
+  const handleDelete = async (id: number) => {
+    const res = await fetch("/api/documents/" + id, {
+      method: "DELETE",
+    });
+
+    if (res.ok) {
+      router.push("/documents");
+    }
+  };
+
+  return (
+    <div className="bg-gray-50 rounded-xl m-8 p-10" style={{ maxWidth: '50%' }}>
+      {document ? (
+        <>
+          <h3 className="text-xl text-rose-900 mb-10">{document.title}</h3>
+          <p style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>{document.content}</p>
+          <button onClick={(e) => handleEdit(document)} style={{ marginRight: '10px' }}>
+            <FontAwesomeIcon icon={faEdit} />
+          </button>
+          <button onClick={(e) => handleDelete(params.id)}>
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
+        </>
+      ) : (
+        <div>Loading...</div>
+      )}
+    </div>
+  );
   
-
-    const handleEdit = (content: Content) => {
-      router.push("/edit-document/?id=" + params.id)
-    }
-
-    const handleDelete = async (id: number) => {
-      const res = await fetch("/api/documents/" + id, {
-        method: "DELETE"
-      });
-    
-      if (res.ok) {
-        setContent(content.filter((keep: Content) => keep.id != content.id))    
-        router.push("/documents");
-      } else {
-
-      }
-    }
-    
-    return (
-      <div>
-        <p>här visas dokumentet med id: {params.id}</p>
-        
-        <button onClick={(e) => handleEdit(params.id)} style={{ marginRight: '10px' }}>
-          <FontAwesomeIcon icon={faEdit} />
-        </button>
-    
-        <button onClick={(e) => handleDelete(params.id)}>
-          <FontAwesomeIcon icon={faTrash} />
-        </button>
-      </div>
-    )
+  
 }

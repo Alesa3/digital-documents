@@ -31,5 +31,9 @@ export async function DELETE(req: Request, {params}: {params: {id: string}}) {
     const result = await dbQuery({
         sql: "DELETE FROM digitaldocs where id = " + parseInt(id)
     });
+
+    // const result = await dbQuery({
+    //     sql: "UPDATE digitaldocs set deleted=1 where id = " + parseInt(id)
+    // })
     return NextResponse.json(result)
 } 

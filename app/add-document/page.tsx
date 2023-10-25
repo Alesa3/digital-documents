@@ -33,7 +33,7 @@ export default function AddDocument() {
           className="w-full h-10 px-7 py-2 mb-4 text-s border border-gray-300 rounded-md"
         />
         <textarea
-          type="text"
+          // type="text"
           placeholder="Content"
           value={content}
           onChange={(e) => setContent(e.target.value)}

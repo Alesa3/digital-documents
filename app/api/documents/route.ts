@@ -1,4 +1,5 @@
 import { dbQuery } from "@/lib/db";
+
 import { NextResponse } from "next/server";
 
 
@@ -9,7 +10,7 @@ export async function GET(req: Request, res: Response) {
     return NextResponse.json(result)
 }
 
-export async function POST(req: Request, res: Respons) {
+export async function POST(req: Request, res: Response) {
     const body = await req.json();
     const {title, content} = body;
 
