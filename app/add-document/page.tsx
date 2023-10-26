@@ -1,15 +1,20 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
+import { Editor } from '@tinymce/tinymce-react';
 
 export default function AddDocument() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
 
+  const handleEditorChange = (content: SetStateAction<string>, editor: any) => {
+    setContent(content);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     const res = await fetch("/api/documents", {
       method: "POST",
       headers: {
@@ -17,12 +22,11 @@ export default function AddDocument() {
       },
       body: JSON.stringify({ title, content, author }),
     });
-
+  
     setTitle("");
     setContent("");
     setAuthor("");
   };
-
   return (
     <div>
       <h1>New document</h1>
@@ -34,20 +38,34 @@ export default function AddDocument() {
           onChange={(e) => setTitle(e.target.value)}
           className="w-full h-10 px-7 py-2 mb-4 text-s border border-gray-300 rounded-md"
         />
-         <input
+        <input
           type="text"
           placeholder="Author"
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
           className="w-full h-10 px-7 py-2 mb-4 text-s border border-gray-300 rounded-md"
-          />
-        <textarea
-          // type="text"
-          placeholder="Content"
+        />
+        <Editor
+          apiKey='pj1o9u0f7oks50yep5f29ryf2ztizh5tmx4e8ism7xvfqto7'
           value={content}
-          onChange={(e) => setContent(e.target.value)}
-          className="w-full h-80 px-40 py-2 text-s border border-gray-300 rounded-md overflow-y-auto"
-          />
+          init={{
+            height: 500,
+            menubar: false,
+            plugins: [
+              'advlist autolink lists link image',
+              'charmap print preview anchor help',
+              'searchreplace visualblocks code',
+              'insertdatetime media table paste wordcount'
+            ],
+            toolbar:
+              'undo redo | formatselect | bold italic | \
+              alignleft aligncenter alignright | \
+              bullist numlist outdent indent | forecolor | help',
+              language: 'en',
+              directionality: 'ltr'
+          }}
+          onEditorChange={handleEditorChange}
+        />
         <button type="submit">Save</button>
       </form>
     </div>
