@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import DOMPurify from 'dompurify';
+import DOMPurify from "dompurify";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -41,6 +41,7 @@ export default function DisplayDocument({
     }
   };
 
+
   return (
     <div className="bg-gray-50 rounded-xl m-8 p-10" style={{ maxWidth: "50%" }}>
       {document ? (
@@ -48,7 +49,12 @@ export default function DisplayDocument({
           <h3 className="text-xl text-rose-900 mb-10 font-bold">
             {document.title}
           </h3>
-          <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(document.content) }} />
+          <div
+
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(document.content),
+            }}
+          />
 
           <div className="text-right mt-10">
             <p className="text-sm text-gray-500">

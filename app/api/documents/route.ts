@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request, res: Response) {
     const result = await dbQuery({
-        sql: "SELECT * FROM digitaldocs",
+        sql: "SELECT * FROM digitaldocs WHERE deleted=0",
     });
     return NextResponse.json(result)
 }

@@ -29,7 +29,6 @@ export default function AddDocument() {
   };
   return (
     <div>
-      <h1>New document</h1>
       <form onSubmit={handleSubmit} className="flex flex-col">
         <input
           type="text"
@@ -66,7 +65,9 @@ export default function AddDocument() {
           }}
           onEditorChange={handleEditorChange}
         />
+        <div className="mt-5 flex items-center justify-center text-rose-900">
         <button type="submit">Save</button>
+        </div>
       </form>
     </div>
   );
