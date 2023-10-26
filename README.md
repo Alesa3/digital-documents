@@ -18,6 +18,7 @@ Digital Docs is a web application designed for efficient digital document manage
 https://github.com/Alesa3/digital-documents.git
 ```
 
+2. Navigate to the correct directory
 ```bash
 cd digital-documents
 ```
@@ -34,4 +35,7 @@ npm install
 npm run dev
 ```
 
+The application should now be accessible at http://localhost:3000 in your web browser.
+
+For the project to work correctly, you will need a local database, such as MAMP with phpMyAdmin, to store and retrieve data. Additionally, you will need a .env file to configure your database connection.
 
