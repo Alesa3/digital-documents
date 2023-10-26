@@ -1,4 +1,3 @@
-// components/CancelButton.js
 import React from "react";
 
 interface CancelButtonProps {
