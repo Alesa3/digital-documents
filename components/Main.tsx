@@ -1,5 +1,3 @@
-
-
 export default function Main({ children }: { children: React.ReactNode }) {
     return (
       <main className="h-full min-h-screen w-screen bg-black flex justify-center">

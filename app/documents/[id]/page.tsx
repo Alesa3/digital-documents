@@ -1,17 +1,20 @@
 "use client";
-import React, { useEffect } from 'react'
-import { useRouter, useSearchParams } from "next/navigation"
-import { useState } from 'react';
+import React, { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-import { Document } from '@/interfaces';
+import { Document } from "@/interfaces";
 
-export default function DisplayDocument({ params }: { params: { id: number } }) {
+export default function DisplayDocument({
+  params,
+}: {
+  params: { id: number };
+}) {
   const router = useRouter();
   const [document, setDocument] = useState<Document | undefined>(undefined);
-
 
   useEffect(() => {
     const getDocument = async () => {
@@ -38,24 +41,30 @@ export default function DisplayDocument({ params }: { params: { id: number } }) 
   };
 
   return (
-    <div className="bg-gray-50 rounded-xl m-8 p-10" style={{ maxWidth: '50%' }}>
+    <div className="bg-gray-50 rounded-xl m-8 p-10" style={{ maxWidth: "50%" }}>
       {document ? (
         <>
-          <h3 className="text-xl text-rose-900 mb-10 font-bold">{document.title}</h3>
-          <p style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>{document.content}</p>
-  
+          <h3 className="text-xl text-rose-900 mb-10 font-bold">
+            {document.title}
+          </h3>
+          <p style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
+            {document.content}
+          </p>
+
           <div className="text-right mt-10">
             <p className="text-sm text-gray-500">
-              Created at: {new Date(document.createdAt).toLocaleString('en-US', {
-                dateStyle: 'short',
-                timeStyle: 'short',
+              Created at:{" "}
+              {new Date(document.createdAt).toLocaleString("en-US", {
+                dateStyle: "short",
+                timeStyle: "short",
               })}
             </p>
-            <p className="text-sm text-gray-500">
-              Author: {document.author}
-            </p>
+            <p className="text-sm text-gray-500">Author: {document.author}</p>
             <div className="flex justify-end mt-10">
-              <button onClick={(e) => handleEdit(document)} style={{ marginRight: '10px' }}>
+              <button
+                onClick={(e) => handleEdit(document)}
+                style={{ marginRight: "10px" }}
+              >
                 <FontAwesomeIcon icon={faEdit} />
               </button>
               <button onClick={(e) => handleDelete(params.id)}>
@@ -69,5 +78,4 @@ export default function DisplayDocument({ params }: { params: { id: number } }) 
       )}
     </div>
   );
-
-      }
+}
