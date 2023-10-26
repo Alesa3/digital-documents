@@ -55,7 +55,7 @@ export function EditForm(props: EditFormProps) {
           toolbar:
             "undo redo | formatselect | bold italic | \
             alignleft aligncenter alignright | \
-            bullist numlist outdent indent | forecolor | help",
+            bullist numlist outdent indent | forecolor backcolor | help",
         }}
         onEditorChange={handleEditorChange}
       />

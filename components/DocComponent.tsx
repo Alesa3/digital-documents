@@ -14,7 +14,6 @@ function DocComponent(props: Props) {
     }
   );
 
-  // Function to strip HTML tags
   const stripHtmlTags = (html: string) => {
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = html;
@@ -23,7 +22,6 @@ function DocComponent(props: Props) {
 
   const strippedContent = stripHtmlTags(props.document.content);
 
-  // Only show the first 20 characters
   const shortContent = strippedContent.substring(0, 20);
 
   return (

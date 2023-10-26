@@ -1,5 +1,4 @@
 "use client"
-
 import { SetStateAction, useState } from "react";
 import { Editor } from '@tinymce/tinymce-react';
 
@@ -7,10 +6,7 @@ export default function AddDocument() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
-
-  const handleEditorChange = (content: SetStateAction<string>, editor: any) => {
-    setContent(content);
-  };
+  const [deleted, setDeleted] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,15 +16,21 @@ export default function AddDocument() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title, content, author }),
-    });
-  
+      body: JSON.stringify({title, content, author, deleted})
+    })
+
     setTitle("");
     setContent("");
     setAuthor("");
   };
+
+  const handleEditorChange = (content: SetStateAction<string>, editor: any) => {
+    setContent(content);
+  };
+
   return (
     <div>
+      <h1>New document</h1>
       <form onSubmit={handleSubmit} className="flex flex-col">
         <input
           type="text"
@@ -59,15 +61,13 @@ export default function AddDocument() {
             toolbar:
               'undo redo | formatselect | bold italic | \
               alignleft aligncenter alignright | \
-              bullist numlist outdent indent | forecolor | help',
-              language: 'en',
-              directionality: 'ltr'
+              bullist numlist outdent indent | forecolor backcolor | help'
           }}
           onEditorChange={handleEditorChange}
         />
-        <div className="mt-5 flex items-center justify-center text-rose-900">
+        
         <button type="submit">Save</button>
-        </div>
+        
       </form>
     </div>
   );

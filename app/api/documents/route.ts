@@ -1,7 +1,5 @@
 import { dbQuery } from "@/lib/db";
-
 import { NextResponse } from "next/server";
-
 
 export async function GET(req: Request, res: Response) {
     const result = await dbQuery({
@@ -15,7 +13,7 @@ export async function POST(req: Request, res: Response) {
     const {title, content, author} = body;
 
     const result = await dbQuery({
-        sql: "INSERT INTO digitaldocs (title, content, author) VALUES(?, ?, ?)",
+        sql: "INSERT INTO digitaldocs (title, content, author, deleted) VALUES(?, ?, ?, 0)",
         values: [title, content, author]
     })
     return NextResponse.json(result)
