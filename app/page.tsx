@@ -5,10 +5,10 @@ export default function Home() {
   return (
     <div className="">
       <div className="max-w-xl p-8 bg-white shadow-lg rounded-lg text-gray-300">
-        <h1 className="text-3xl font-bold mb-4">
+        <h1 className="text-3xl font-bold mb-4 font-roboto">
           Welcome to our digital documents platform
         </h1>
-        <p className="text-gray-700 text-m">
+        <p className="text-gray-700 text-m font-roboto">
           Where efficiency meets creativity. Our mission is to provide you with
           a seamless experience in creating and securely storing digital
           documents. Whether you're a student, professional, or simply
