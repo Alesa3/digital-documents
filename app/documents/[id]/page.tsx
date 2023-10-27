@@ -32,15 +32,18 @@ export default function DisplayDocument({
   };
 
   const handleDelete = async (id: number) => {
-    const res = await fetch("/api/documents/" + id, {
-      method: "DELETE",
-    });
+    const shouldDelete = window.confirm("Are you sure you want to delete this document?");
+    if (shouldDelete) {
+      const res = await fetch("/api/documents/" + id, {
+        method: "DELETE",
+      });
 
-    if (res.ok) {
-      router.push("/documents");
+      if (res.ok) {
+        router.push("/documents");
+      }
     }
-  };
 
+  };
 
   return (
     <div className="bg-gray-50 rounded-xl m-8 p-10" style={{ maxWidth: "50%" }}>
@@ -50,7 +53,6 @@ export default function DisplayDocument({
             {document.title}
           </h3>
           <div
-
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(document.content),
             }}
@@ -84,3 +86,4 @@ export default function DisplayDocument({
     </div>
   );
 }
+

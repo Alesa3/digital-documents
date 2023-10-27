@@ -51,6 +51,7 @@ export function EditForm(props: EditFormProps) {
             "charmap print preview anchor help",
             "searchreplace visualblocks code",
             "insertdatetime media table paste wordcount",
+            'backgroundcolor'
           ],
           toolbar:
             "undo redo | formatselect | bold italic | \

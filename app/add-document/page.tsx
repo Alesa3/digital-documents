@@ -7,21 +7,31 @@ export default function AddDocument() {
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
   const [deleted, setDeleted] = useState(false)
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     const res = await fetch("/api/documents", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({title, content, author, deleted})
+      body: JSON.stringify({ title, content, author, deleted })
     })
 
-    setTitle("");
-    setContent("");
-    setAuthor("");
+    if (res.ok) {
+      setSuccessMessage("You have added your post!");
+      setTitle("");
+      setContent("");
+      setAuthor("");
+      setTimeout(() => {
+        setSuccessMessage(null);
+      }, 3000);
+    } else {
+      setSuccessMessage("Failed to post the document. Please try again.");
+    }
   };
 
   const handleEditorChange = (content: SetStateAction<string>, editor: any) => {
@@ -30,7 +40,7 @@ export default function AddDocument() {
 
   return (
     <div>
-      <h1>New document</h1>
+       
       <form onSubmit={handleSubmit} className="flex flex-col">
         <input
           type="text"
@@ -56,7 +66,8 @@ export default function AddDocument() {
               'advlist autolink lists link image',
               'charmap print preview anchor help',
               'searchreplace visualblocks code',
-              'insertdatetime media table paste wordcount'
+              'insertdatetime media table paste wordcount',
+              'backgroundcolor'
             ],
             toolbar:
               'undo redo | formatselect | bold italic | \
@@ -65,9 +76,15 @@ export default function AddDocument() {
           }}
           onEditorChange={handleEditorChange}
         />
-        
+
         <button type="submit">Save</button>
-        
+
+        {successMessage && (
+        <p className="text-green-500 text-m mb-4 flex items-center justify-center">
+          {successMessage}
+        </p>
+      )}
+
       </form>
     </div>
   );

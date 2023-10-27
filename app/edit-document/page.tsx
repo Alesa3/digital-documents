@@ -12,6 +12,7 @@ export default function EditDocument() {
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
   const [document, setDocument] = useState<Document | undefined>(undefined);
+  
 
   const handleEditorChange = (content: SetStateAction<string>, editor: any) => {
     setContent(content);
