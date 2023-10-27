@@ -1,5 +1,6 @@
 import React from "react";
 import { Document } from "@/interfaces";
+import DOMPurify from "dompurify";
 
 interface Props {
   document: Document;
@@ -20,12 +21,16 @@ function DocComponent(props: Props) {
     return tempDiv.textContent || tempDiv.innerText || "";
   };
 
-  const strippedContent = stripHtmlTags(props.document.content);
-
-  const shortContent = strippedContent.substring(0, 20);
+  const sanitizedText = DOMPurify.sanitize(props.document.content, {
+    ALLOWED_TAGS: [],
+  });
+  const shortContent = sanitizedText.substring(0, 20);
 
   return (
-    <div className="bg-gray-100 rounded-xl m-5 p-10" style={{ height: "12rem", width: "20rem" }}>
+    <div
+      className="bg-gray-100 rounded-xl m-5 p-10"
+      style={{ height: "12rem", width: "20rem" }}
+    >
       <h3 className="text-xl text-rose-900">{props.document.title}</h3>
 
       <p>{shortContent}...</p>

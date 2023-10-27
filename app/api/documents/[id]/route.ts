@@ -27,10 +27,12 @@ export async function DELETE(req: Request, {params}: {params: {id: string}}) {
     const {id} = params;
     console.log("id", id)
 
+    //hard delete
     // const result = await dbQuery({
     //     sql: "DELETE FROM digitaldocs where id = " + parseInt(id)
     // });
 
+    //soft delete
     const result = await dbQuery({
         sql: "UPDATE digitaldocs set deleted=1 where id = " + parseInt(id)
     })
