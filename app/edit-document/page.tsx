@@ -2,10 +2,10 @@
 
 import { useState, useEffect, SetStateAction } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Document } from "@/interfaces";
-import CancelButton from "@/components/CancelButton";
-import { EditForm } from "@/components/EditDoc";
-import { LoadingMessage } from "@/components/LoadingMsg";
+import { Document } from "@/src/interfaces/interfaces";
+import CancelButton from "@/app/components/CancelButton";
+import { EditForm } from "@/app/components/EditDoc";
+import { LoadingMessage } from "@/app/components/LoadingMsg";
 
 export default function EditDocument() {
   const [title, setTitle] = useState("");

@@ -7,7 +7,7 @@ import DOMPurify from "dompurify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-import { Document } from "@/interfaces";
+import { Document } from "@/src/interfaces/interfaces";
 
 export default function DisplayDocument({
   params,

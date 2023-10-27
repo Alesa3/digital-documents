@@ -1,5 +1,5 @@
-import Header from '@/components/Header'
-import Main from '@/components/Main'
+import Header from '@/app/components/Header'
+import Main from '@/app/components/Main'
 
 import './globals.css'
 import type { Metadata } from 'next'
