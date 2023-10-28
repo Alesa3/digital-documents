@@ -1,6 +1,6 @@
 ### Digital Docs
 
-Digital Docs is a web application designed for efficient digital document management. Users can effortlessly create, edit, and delete documents. Editing a document can also be done using a built-in text editor, making it possible to change the text and background color. All modifications are automatically saved in a local MySQL database.
+Digital Docs is a web application designed for efficient digital document management. Users can effortlessly create, edit, and delete documents. Editing a document can also be done using a built-in text editor, making it possible to change the color and background of the text. All modifications are automatically saved in a local MySQL database.
 
 ![image](https://github.com/Alesa3/digital-documents/assets/80218438/39646e00-d990-4d07-9d92-e6908b226af2)
 
