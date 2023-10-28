@@ -11,7 +11,7 @@ Digital Docs is a web application designed for efficient digital document manage
 - Next.js
 - Tailwind CSS
 - TinyMCE
-- phpMyAdmin
+- phpMyAdmin/MySQL
 
 ### How to run the project
 
