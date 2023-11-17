@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Document } from "@/src/interfaces/interfaces";
-import DocComponent from "@/app/components/DocComponent";
+import { Document } from "@/interfaces";
+import DocComponent from "@/components/DocComponent";
 
 export default function Documents() {
   const [documents, setDocuments] = useState([]);

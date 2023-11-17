@@ -3,17 +3,11 @@ import React, { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import DOMPurify from "dompurify";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Document } from "@/interfaces";
 
-import { Document } from "@/src/interfaces/interfaces";
-
-export default function DisplayDocument({
-  params,
-}: {
-  params: { id: number };
-}) {
+export default function DisplayDocument({ params }: { params: { id: number } }) {
   const router = useRouter();
   const [document, setDocument] = useState<Document | undefined>(undefined);
 
@@ -32,7 +26,9 @@ export default function DisplayDocument({
   };
 
   const handleDelete = async (id: number) => {
-    const shouldDelete = window.confirm("Are you sure you want to delete this document?");
+    const shouldDelete = window.confirm(
+      "Are you sure you want to delete this document?"
+    );
     if (shouldDelete) {
       const res = await fetch("/api/documents/" + id, {
         method: "DELETE",
@@ -42,11 +38,10 @@ export default function DisplayDocument({
         router.push("/documents");
       }
     }
-
   };
 
   return (
-    <div className="bg-gray-50 rounded-xl m-8 p-10" style={{ maxWidth: "50%" }}>
+    <div className="bg-gray-50 rounded-xl m-8 p-10" style={{ maxWidth: "100%" }}>
       {document ? (
         <>
           <h3 className="text-xl text-rose-900 mb-10 font-bold">

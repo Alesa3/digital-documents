@@ -1,5 +1,5 @@
 import React from "react";
-import { Document } from "@/src/interfaces/interfaces";
+import { Document } from "@/interfaces";
 import DOMPurify from "dompurify";
 
 interface Props {
