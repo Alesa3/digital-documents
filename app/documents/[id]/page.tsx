@@ -41,7 +41,7 @@ export default function DisplayDocument({ params }: { params: { id: number } }) 
   };
 
   return (
-    <div className="bg-gray-50 rounded-xl m-8 p-10" style={{ maxWidth: "100%" }}>
+    <div className="bg-gray-50 rounded-xl m-8 p-10" style={{ maxWidth: "50%" }}>
       {document ? (
         <>
           <h3 className="text-xl text-rose-900 mb-10 font-bold">
